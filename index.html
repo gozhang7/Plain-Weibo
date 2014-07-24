@@ -1,19 +1,18 @@
 <!DOCTYPE html>
 <html>
+<html xmlns:wb="http://open.weibo.com/wb">
 <head>
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 	<script src="js/main.js"></script>
+	<script src="http://code.jquery.com/jquery-1.9.0.js"></script>
+	<script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=762610379&debug=true" type="text/javascript" charset="utf-8"></script>
 	<title>Plain Weibo</title>
 </head>
 <body>
 	<div class="login">
-	<p> <h1>Login</h1> </p>
-	<form class="loginForm">
-		Username: <input type="text" id="username" autofocus><br>
-		Password: <input type="password" id="password"><br>
-		<input type="button" value="Submit" onclick="login()">
-		<p id="errorMessage"> </p>
-	</form>
+	<p> <h2>LOGIN STATUS: <span id="status">OUT</span></h2> </p>
+	<input type="button" value="Login" onclick="login()">
+	<input type="button" value="Logout" onclick="logout()">
 	</div>
 	<div class="main">
 		<p> Main body </p>

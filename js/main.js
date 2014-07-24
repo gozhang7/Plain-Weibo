@@ -1,10 +1,24 @@
 function login() {
-    var username = document.getElementById('username').value;
-    var password = document.getElementById('password').value;
-
-    authorize(username, password);
+	WB2.login(checkStatus());
+	getBos();
+}
+function logout() {
+	WB2.logout(checkStatus());
 }
 
-function authorize(username, password) {
-	
+function checkStatus() {
+	var status = WB2.checkLogin();
+	if(status == true) {
+		document.getElementById("status").innerHTML = "IN";
+		getBos();
+	}
+	else
+		document.getElementById("status").innerHTML = "OUT";
+}
+
+var timeline = "https://api.weibo.com/2/statuses/public_timeline.json";
+function getBos() {
+	$.get(timeline, function(data) {
+		console.log(data);
+	});
 }

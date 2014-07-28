@@ -1,7 +1,3 @@
-#errorMessage {
-	visibility: hidden;
-}
-
 .main {
-	visibility: hidden;
+	visibility: display;
 }

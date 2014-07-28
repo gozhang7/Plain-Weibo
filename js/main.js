@@ -16,9 +16,16 @@ function checkStatus() {
 		document.getElementById("status").innerHTML = "OUT";
 }
 
-var timeline = "https://api.weibo.com/2/statuses/public_timeline.json";
+var timeline = "http://weiboapi.com/2/statuses/public_timeline.json";
 function getBos() {
-	$.get(timeline, function(data) {
-		console.log(data);
+	WB2.anyWhere(function(W){
+	    W.parseCMD("/statuses/public_timeline.json", function(sResult, bStatus){
+	        try{
+	            console.log("Result:" + sResult)
+	            console.log("Status:" + bStatus)
+	        }catch(e){}
+	    },{
+	        method: 'get'
+	    });
 	});
 }

@@ -1,21 +1,22 @@
-<!DOCTYPE html>
 <html>
 <html xmlns:wb="http://open.weibo.com/wb">
 <head>
+	<meta property="wb:webmaster" content="c2e49b4bb2b7771a" />
+	<script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=3296964037&debug=true" type="text/javascript" charset="utf-8"></script>
 	<link rel="stylesheet" type="text/css" href="css/main.css">
-	<script src="js/main.js"></script>
 	<script src="http://code.jquery.com/jquery-1.9.0.js"></script>
-	<script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=762610379&debug=true" type="text/javascript" charset="utf-8"></script>
+	<script src="js/main.js"></script>
 	<title>Plain Weibo</title>
 </head>
 <body>
 	<div class="login">
-	<p> <h2>LOGIN STATUS: <span id="status">OUT</span></h2> </p>
+	<p> <h3>LOGIN STATUS: <span id="status">OUT</span></h3> </p>
 	<input type="button" value="Login" onclick="login()">
 	<input type="button" value="Logout" onclick="logout()">
+	<input type="button" value="Refresh" onclick="refresh()">
 	</div>
-	<div class="main">
-		<p> Main body </p>
+	<div class="main" id="result">
+		
 	</div>
 </body>
 </html>

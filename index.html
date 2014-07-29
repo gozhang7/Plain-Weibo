@@ -6,14 +6,19 @@
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 	<script src="http://code.jquery.com/jquery-1.9.0.js"></script>
 	<script src="js/main.js"></script>
+	<script src="js/Autolinker.min.js"></script>
 	<title>Plain Weibo</title>
 </head>
 <body>
 	<div class="login">
 	<p> <h3>LOGIN STATUS: <span id="status">OUT</span></h3> </p>
+	<hr>
 	<input type="button" value="Login" onclick="login()">
 	<input type="button" value="Logout" onclick="logout()">
 	<input type="button" value="Refresh" onclick="refresh()">
+	<input type="button" value="More" onclick="more()">
+	<input type="button" value="Previous" onclick="previous()">
+	<hr>
 	</div>
 	<div class="main" id="result">
 		

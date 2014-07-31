@@ -1,3 +1,11 @@
-.main {
-	visibility: display;
+body {
+	font-family: Microsoft JhengHei;
+}
+
+.innerWeibo {
+	border: 1px solid;
+	margin-left: 20px;
+	margin-top: 3px;
+	padding-left: 3px;
+	margin-right: 10px;
 }

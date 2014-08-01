@@ -3,9 +3,42 @@ body {
 }
 
 .innerWeibo {
-	border: 1px solid;
 	margin-left: 20px;
 	margin-top: 3px;
 	padding-left: 3px;
 	margin-right: 10px;
+	background-color: #f2f2f2;
+
+	border-color: #e3efea;
+	border-width: 1px;
+	border-style: solid;
+	border-radius: 3px;
+}
+
+a:link {
+    text-decoration: none;
+    color: #3c7cb3;
+}
+
+a:visited {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+a:active {
+    text-decoration: underline;
+}
+
+.loadTab {
+	background: #fefded;
+	color: #F48C12;
+	border: 1px solid #f9f2a7;
+	border-radius: 3px;
+	height: 23px;
+	line-height: 23px;
+	text-align: center;
+	margin: 5px 20px 11px;
 }

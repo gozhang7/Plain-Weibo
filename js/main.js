@@ -1,6 +1,8 @@
 var HOME_URL = "/statuses/home_timeline.json";
 var PUBLIC_URL = "/statuses/public_timeline.json";
-var MINE_URL = "statuses/user_timeline.json";
+var MINE_URL = "/statuses/user_timeline.json";
+var COMMENT_URL = "/comments/show.json";
+var USER_BASE_URL = "http://www.weibo.com/";
 var since_id;
 var max_id;
 var counter = 0;
@@ -17,6 +19,8 @@ function init() {
 		document.getElementById("status").innerHTML = "IN";
 		refresh();
 	}
+	var loadMore = document.getElementById("loadMore");
+	loadMore.addEventListener("click", previous);
 }
 
 function login() {
@@ -26,9 +30,6 @@ function login() {
 	if(status()) {
 		document.getElementById("status").innerHTML = "IN";
 		loadWeibos();
-	}
-	else {
-		alert("Login failed...");
 	}
 }
 function logout() {
@@ -74,6 +75,10 @@ function loadWeibos(url, refresh, id, requestType) {
 		if(requestType == getPreviousWeibo) {
 		    W.parseCMD(url, function(sResult, bStatus){
 	        	renderResult(sResult, bStatus, refresh);
+        		var top = $('#weibo_' + (counter - 1)).position().top - 14;
+				$("html, body").animate({
+              		scrollTop: top
+          		}, 600);
 		    }, {
 		    	max_id: id,
 		    	count: RESULTAMOUNT
@@ -94,17 +99,18 @@ function more() {
 }
 
 function previous() {
-	loadWeibos(HOME_URL, true, max_id, getPreviousWeibo);
+	loadWeibos(HOME_URL, false, max_id, getPreviousWeibo);
 }
 
 function renderResult(data, status, refresh) {
+	console.log(data)
 	if(status == true) {
-		var html = formatWeibo(data);
+		var html = formatWeibo(data, refresh);
 
 		if(refresh)
 			document.getElementById("result").innerHTML = html;
 		else
-			document.getElementById("result").innerHTML = html + document.getElementById("result").innerHTML;
+			document.getElementById("result").innerHTML = document.getElementById("result").innerHTML + html;
 	}
 	else {
 		document.getElementById("result").innerHTML = "Error, see console for more detail";
@@ -112,28 +118,36 @@ function renderResult(data, status, refresh) {
 	}
 }
 
-function formatWeibo(data) {
+function formatWeibo(data, refresh) {
 	var html = "";
 	if(data) {
-		for (var i = 0; i < data.statuses.length; i++) {
+		var i = 0;
+		if(!refresh)
+			i = 1;
+		for (; i < data.statuses.length; i++) {
 			var text = processText(data.statuses[i].text);
-			var date = (data.statuses[i].created_at).split('+')[0];
+			var dates = (data.statuses[i].created_at).split(':');
+			date = dates[0] + ":" + dates[1];
 			var midImg = data.statuses[i].bmiddle_pic;
 			var username = data.statuses[i].user.name;
+			var userId = data.statuses[i].user.id;
+			var userUrl = USER_BASE_URL + data.statuses[i].user.id;
 			var reweiboImg = data.statuses[i].retweeted_status ? data.statuses[i].retweeted_status.bmiddle_pic : null;
 			var reweiboText = data.statuses[i].retweeted_status ? processText(data.statuses[i].retweeted_status.text) : null;
 			var reweiboName = data.statuses[i].retweeted_status ? processText(data.statuses[i].retweeted_status.user.name) : null;
+			var weiboId = counter + data.statuses.length - i;
 
-			html += "<div class=weibo id=weibo_" + (counter + data.statuses.length - i) + ">";
-			html += counter + data.statuses.length - i + ": " + date + "<br>";
-			html += username + ": " + text;
+			html += "<div class=weibo id=weibo_" + weiboId + ">";
+			html += date + "<br>";
+			html += "<a href=" + userUrl + " target=_blank>" + username + "</a>: " + text;
 
 			if(midImg)
 				html += " <a href=" + midImg + " target=_blank>" + "[Img]" + "</a>";
 			if(reweiboText && reweiboName) {
 				html += "<br><div class=innerWeibo>" + reweiboName + ": " + reweiboText;	
 				if(reweiboImg)
-					html += " <a href=" + reweiboImg + " target=_blank>" + "[Img]" + "</a></div>";
+					html += " <a href=" + reweiboImg + " target=_blank>" + "[Img]" + "</a>";
+				html += "</div>";
 			}
 			html += "<hr></div>";
 

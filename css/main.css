@@ -1,5 +1,28 @@
 body {
 	font-family: Microsoft JhengHei;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+.leftPanel {
+	width: 23%;
+	position: relative;
+	float: left;
+}
+
+.login {
+	padding-top: 4%;
+	float: right;
+	margin-right: 20%;
+}
+
+.mainBody {
+	padding-top: 4%;
+	width: 68%;
+	position: relative;
+	float: left;
+	margin-right: 2%;
 }
 
 .innerWeibo {
@@ -32,13 +55,15 @@ a:active {
     text-decoration: underline;
 }
 
-.loadTab {
+#showMore {
 	background: #fefded;
 	color: #F48C12;
 	border: 1px solid #f9f2a7;
 	border-radius: 3px;
-	height: 23px;
+	height: 30px;
 	line-height: 23px;
 	text-align: center;
-	margin: 5px 20px 11px;
+	bottom: 0;
+	position: absolute;
+	visibility: hidden;
 }

@@ -17,36 +17,40 @@ $(document).ready(init);
 function init() {
 	if(status()) {
 		document.getElementById("status").innerHTML = "IN";
+		document.getElementById("showMore").style.visibility = "visible";
+		document.getElementById("refresh").style.visibility = "visible";
 		refresh();
 	}
-	var loadMore = document.getElementById("loadMore");
-	loadMore.addEventListener("click", previous);
+	var showMore = document.getElementById("showMore");
+	showMore.addEventListener("click", previous);
 }
 
 function login() {
 	if(!status()) {
-		WB2.login(status());
+		WB2.login();
 	}
-	if(status()) {
-		document.getElementById("status").innerHTML = "IN";
-		loadWeibos();
+
+	function hold() {
+		if(!status()) {
+			setTimeout(hold, 1500);
+		}
+		else
+			init();
 	}
+	hold();
 }
 function logout() {
 	if(status())
 		WB2.logout();
 	document.getElementById("status").innerHTML = "OUT";
 	document.getElementById("result").innerHTML = "<h3>LOGGED OUT</h3>";
+	document.getElementById("showMore").style.visibility = "hidden";
+	document.getElementById("refresh").style.visibility = "hidden";
 }
 
 function status() {
 	var status = WB2.checkLogin();
 	return status;
-}
-
-function checkStatus() {
-	if(!status())
-		alert("Please login first...");
 }
 
 /*
@@ -56,7 +60,6 @@ function checkStatus() {
 *	@requestType: request previous data or new data
 */
 function loadWeibos(url, refresh, id, requestType) {
-	checkStatus();
 	WB2.anyWhere(function(W){
 		if(refresh)
 			counter = 0;

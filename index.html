@@ -10,21 +10,26 @@
 	<title>Plain Weibo</title>
 </head>
 <body>
-	<div class="leftPanel">
-		<div class="login">
-			<p> <h3>LOGIN STATUS: <span id="status">OUT</span></h3> </p>
-			<input type="button" id="login" value="Login" onclick="login()">
-			<input type="button" id="logout" value="Logout" onclick="logout()">
-			<input type="button" id="refresh" value="Refresh" onclick="refresh()">
-		</div>
-	</div>
-	<div class="mainBody">
-		<div class="main" id="result">
-			
-		</div>
-	</div>
-	<div id="showMore">
-		Show More
-	</div>
+	<table class="mainTable">
+		<tr>
+			<td class="leftCell">
+				<div class="login">
+					<p> <h3>LOGIN STATUS: <span id="status">OUT</span></h3> </p>
+					<input type="button" id="login" value="Login" onclick="login()">
+					<input type="button" id="logout" value="Logout" onclick="logout()">
+					<input type="button" id="refresh" value="Refresh" onclick="refresh()">
+				</div>
+			</td>
+			<td class="rightCell">
+				<div class="main" id="result">
+					
+				</div>
+				<div id="showMore" class="showMore">
+					<span>Show More</span>
+				</div>
+			</td>
+			<td class="rightSideFiller"/>
+		</tr>
+	</table>
 </body>
 </html>

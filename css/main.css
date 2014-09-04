@@ -12,6 +12,7 @@ table {
 	margin-left: 4%;
 	margin-right: 4%;
 	padding:10 20 20 10;
+	width: 100%;
 }
 
 tr {
@@ -19,19 +20,23 @@ tr {
 }
 
 .leftCell {
-	width: 13%;
+	width: 25%;
 	padding-right: 2.5%;
-	
 	border-right: 1px solid #e3efea;
 	border-radius: 3px;
 }
 
-.rightCell {
+.mainCell {
 	padding-top: 2%;
-	width: 25%;
+	width: 75%;
 	padding-bottom: 0.5%;
 	padding-left: 2.5%;
+	padding-right: 32%;
 	text-align: justify;
+}
+
+.mainContent {
+	max-width: 555px;
 }
 
 .weiboContent {
@@ -59,10 +64,6 @@ tr {
 .login {
 	margin-top: 25%;
 	float: right;
-}
-
-.rightSideFiller {
-	width: 10%;
 }
 
 .innerWeibo {

@@ -39,6 +39,7 @@ function login() {
 	}
 	hold();
 }
+
 function logout() {
 	if(status())
 		WB2.logout();
@@ -59,11 +60,10 @@ function status() {
 *	@refresh: is this request a refresh or request more. Refresh quest will clear all previous data while request more will not.
 *	@requestType: request previous data or new data
 */
-function loadWeibos(url, refresh, id, requestType) {
+function loadWeibos(url, refresh, id) {
 	WB2.anyWhere(function(W){
-		if(refresh)
+		if(refresh) {
 			counter = 0;
-		if(requestType == getNewWeibo) {
 		    W.parseCMD(url, function(sResult, bStatus){
 	        	renderResult(sResult, bStatus, refresh);
 		    }, {
@@ -74,8 +74,7 @@ function loadWeibos(url, refresh, id, requestType) {
 		        cache_time : 30
 		    });
 		}
-
-		if(requestType == getPreviousWeibo) {
+		else{
 		    W.parseCMD(url, function(sResult, bStatus){
 	        	renderResult(sResult, bStatus, refresh);
         		var top = $('#weibo_' + (counter - 1)).position().top - 14;
@@ -94,15 +93,11 @@ function loadWeibos(url, refresh, id, requestType) {
 }
 
 function refresh() {
-	loadWeibos(HOME_URL, true, 0, getNewWeibo);
-}
-
-function more() {
-	loadWeibos(HOME_URL, false, since_id, getNewWeibo);
+	loadWeibos(HOME_URL, true, 0);
 }
 
 function previous() {
-	loadWeibos(HOME_URL, false, max_id, getPreviousWeibo);
+	loadWeibos(HOME_URL, false, max_id);
 }
 
 function renderResult(data, status, refresh) {
@@ -113,7 +108,7 @@ function renderResult(data, status, refresh) {
 		if(refresh)
 			document.getElementById("result").innerHTML = html;
 		else
-			document.getElementById("result").innerHTML = document.getElementById("result").innerHTML + html;
+			document.getElementById("result").innerHTML += html;
 	}
 	else {
 		document.getElementById("result").innerHTML = "Error, see console for more detail";
@@ -129,15 +124,19 @@ function formatWeibo(data, refresh) {
 			i = 1;
 		for (; i < data.statuses.length; i++) {
 			var text = processText(data.statuses[i].text);
+
 			var dates = (data.statuses[i].created_at).split(':');
 			date = dates[0] + ":" + dates[1];
+
 			var midImg = data.statuses[i].bmiddle_pic;
 			var username = data.statuses[i].user.name;
 			var userId = data.statuses[i].user.id;
 			var userUrl = USER_BASE_URL + data.statuses[i].user.id;
+
 			var reweiboImg = data.statuses[i].retweeted_status ? data.statuses[i].retweeted_status.bmiddle_pic : null;
 			var reweiboText = data.statuses[i].retweeted_status ? processText(data.statuses[i].retweeted_status.text) : null;
 			var reweiboName = data.statuses[i].retweeted_status ? processText(data.statuses[i].retweeted_status.user.name) : null;
+			
 			var weiboId = counter + data.statuses.length - i;
 			var comments = data.statuses[i].comments_count ? data.statuses[i].comments_count : "0";
 			var reposts = data.statuses[i].reposts_count ? data.statuses[i].reposts_count : "0";
@@ -158,7 +157,7 @@ function formatWeibo(data, refresh) {
 			html += "</div>";
 			html += "<div class='metaData'>";
 			html += "<div class=weiboDate>" + date + "</div>";
-			html += "<div class='weiboComments'>Comments(" + comments + ") | Forward(" + reposts + ")</div>";
+			html += "<div class='weiboComments'>Forward(" + reposts + ") | Comments(" + comments + ")</div>";
 			html += "</div>";
 			html += "</div><hr>";
 

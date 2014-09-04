@@ -1,8 +1,11 @@
 body {
-	font-family: Microsoft JhengHei;
+	font-family: Arial,Helvetica,sans-serif;
 	height: 100%;
 	margin: 0;
 	padding: 0;
+	background-image: url(https://www.icloud.com/applications/notes/14E45/zh-cn/packed-1.png);
+    background-position: 0px 0px;
+	background-repeat: repeat;
 }
 
 table {
@@ -25,9 +28,32 @@ tr {
 
 .rightCell {
 	padding-top: 2%;
-	width: 40%;
+	width: 25%;
 	padding-bottom: 0.5%;
 	padding-left: 2.5%;
+	text-align: justify;
+}
+
+.weiboContent {
+	font-size: 15px;
+	line-height: 23px;
+}
+
+.metaData {
+	overflow: auto;
+	font-size: 70%;
+	color: #00bcf2;
+	padding: 5 5 0 5;
+}
+
+.weiboDate {
+	position: relative;
+	float: left;
+}
+
+.weiboComments {
+	position: relative;
+	float: right;
 }
 
 .login {
@@ -54,7 +80,7 @@ tr {
 
 a:link {
     text-decoration: none;
-    color: #3c7cb3;
+    color: #00bcf2;
 }
 
 a:visited {
@@ -74,15 +100,23 @@ a:active {
 	color: #F48C12;
 	border: 1px solid #f9f2a7;
 	border-radius: 3px;
-	height: 40px;
+	height: 30px;
 	line-height: 23px;
 	text-align: center;
 	visibility: hidden;
 	margin-top: 20px;
-	padding-top: 16px;
+	padding-top: 10px;
 	font-size: 35;
 	cursor: pointer;
 }
 .showMore span {
 
+}
+
+hr {
+	margin-top: 4;
+	background-image: -webkit-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0));
+	border: 0;
+	height: 1px;
+	color: gray;
 }

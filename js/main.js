@@ -139,9 +139,11 @@ function formatWeibo(data, refresh) {
 			var reweiboText = data.statuses[i].retweeted_status ? processText(data.statuses[i].retweeted_status.text) : null;
 			var reweiboName = data.statuses[i].retweeted_status ? processText(data.statuses[i].retweeted_status.user.name) : null;
 			var weiboId = counter + data.statuses.length - i;
+			var comments = data.statuses[i].comments_count ? data.statuses[i].comments_count : "0";
+			var reposts = data.statuses[i].reposts_count ? data.statuses[i].reposts_count : "0";
 
 			html += "<div class=weibo id=weibo_" + weiboId + ">";
-			html += date + "<br>";
+			html += "<div class='weiboContent'>"
 			html += "<a href=" + userUrl + " target=_blank>" + username + "</a>: " + text;
 
 			if(midImg)
@@ -152,7 +154,13 @@ function formatWeibo(data, refresh) {
 					html += " <a href=" + reweiboImg + " target=_blank>" + "[Img]" + "</a>";
 				html += "</div>";
 			}
-			html += "<hr></div>";
+
+			html += "</div>";
+			html += "<div class='metaData'>";
+			html += "<div class=weiboDate>" + date + "</div>";
+			html += "<div class='weiboComments'>Comments(" + comments + ") | Forward(" + reposts + ")</div>";
+			html += "</div>";
+			html += "</div><hr>";
 
 			since_id = data.statuses[0].id;
 			since_time = data.statuses[0].created_at;

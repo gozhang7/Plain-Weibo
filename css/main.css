@@ -1,8 +1,8 @@
 body {
 	font-family: Arial,Helvetica,sans-serif;
 	height: 100%;
-	margin: 0;
-	padding: 0;
+	margin: 1;
+	padding: ;
 	background-image: url(https://www.icloud.com/applications/notes/14E45/zh-cn/packed-1.png);
     background-position: 0px 0px;
 	background-repeat: repeat;
@@ -64,6 +64,7 @@ tr {
 .login {
 	margin-top: 25%;
 	float: right;
+	background: red;
 }
 
 .innerWeibo {
@@ -111,7 +112,7 @@ a:active {
 	cursor: pointer;
 }
 .showMore span {
-
+	position: relative;
 }
 
 hr {

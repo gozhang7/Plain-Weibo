@@ -1,3 +1,5 @@
+// JS main entrance V1.0
+
 var HOME_URL = "/statuses/home_timeline.json";
 var PUBLIC_URL = "/statuses/public_timeline.json";
 var MINE_URL = "/statuses/user_timeline.json";
